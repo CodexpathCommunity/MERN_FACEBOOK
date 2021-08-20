@@ -1,15 +1,14 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const userRoutes = require("./routes/index");
 const authRoutes = require("./routes/auth");
 
-dotenv.config(); // load .env file
+const CONNECTION_URL = `mongodb://localhost:27017/mernFb`;
 mongoose.connect(
-  process.env.MONGO_URL,
+  CONNECTION_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
