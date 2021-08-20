@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const userRoutes = require("./routes/index");
+const authRoutes = require("./routes/auth");
 
 dotenv.config(); // load .env file
 mongoose.connect(
@@ -22,9 +24,12 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
+//routes
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 app.listen(8800, () => {
   console.log("Server is running on port 8800");
