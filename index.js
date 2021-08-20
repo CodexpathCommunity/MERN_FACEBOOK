@@ -17,6 +17,15 @@ mongoose.connect(
   }
 );
 
+//middlware
+app.use(express.json());
+app.use(helmet());
+app.use(morgan("common"));
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
 app.listen(8800, () => {
   console.log("Server is running on port 8800");
 });
